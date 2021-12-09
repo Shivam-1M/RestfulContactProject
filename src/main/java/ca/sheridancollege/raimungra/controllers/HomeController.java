@@ -15,7 +15,7 @@ import java.util.Map;
 @Controller
 public class HomeController {
 
-    @GetMapping("/listContacts")
+    @GetMapping("secure/listContacts")
     public String viewContacts(Model model, RestTemplate restTemplate) {
         ResponseEntity<Contact[]> responseEntity = restTemplate.getForEntity
                 ("http://localhost:8080/contacts", Contact[].class);
@@ -38,14 +38,20 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/addContact")
+    @GetMapping("secure/addContact")
     public String getAddContact() {
         return "secure/addContact";
     }
 
-    @GetMapping("/register")
+    @GetMapping("/login")
     public String getRegister() {
-        return "register";
+        return "login";
+    }
+
+    @GetMapping("/permission_denied")
+    public String noPermission(){
+
+        return "error/accessDenied";
     }
 
 }
