@@ -4,7 +4,77 @@ body{
 }
 
 .background{
-    background-image: url("Background.png");
+    background-image: url("Background.svg");
     background-size: cover;
     background-repeat: no-repeat;
+    background-color: #EED056;
 }
+
+.otherBackground{
+    background-image: url("OtherBackground.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #EED056;
+}
+
+.mainBackground{
+    background-image: url("MainBackground.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #F8EBB6;
+}
+
+.container{
+    margin-top: 3.5%;
+    margin-left: 55%;
+}
+
+.container a{
+    margin-right: 12%;
+    font-size: 16px;
+    font-family: poppins;
+    text-decoration: none;
+    color: #383682;
+}
+
+.heading-cont{
+    margin-top: 12%;
+    margin-left: 7%;
+    font-family: poppins;
+    color: #AFAFAF;
+    width: 30%;
+    font-size: 20px;
+}
+
+.register{
+    margin-top: 12%;
+    margin-left: 7%;
+    font-family: poppins;
+    color: #AFAFAF;
+    width: 30%;
+    font-size: 20px;
+}
+
+#table {
+    font-family: Poppins, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#table td, #table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#table tr:nth-child(even){background-color: #F8EBB6;}
+
+#table tr:hover {background-color: #ddd;}
+
+#table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #EED056;
+    color: white;
+}
+
