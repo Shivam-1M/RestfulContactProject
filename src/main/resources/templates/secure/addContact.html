@@ -12,8 +12,9 @@
     <a th:href="@{/secure/listContacts}">List Contacts</a>
     <a th:href="@{/secure/addContact}">Add Contact</a>
 </div>
-<h1>Add contact</h1>
-<form method="post" th:action="@{/addContact}" th:object="${contact}" >
+<div class="register">
+<h1 style="color: #383682">Add contact</h1>
+<form method="post" th:action="@{/secure/addContact}" th:object="${contact}" >
     <input type="hidden" name="id" th:field="*{id}"/><br>
     Name: <input type="text" name="name" th:field="*{name}"/><br>
     Phone: <input type="text" name="phone" th:field="*{phone}"/><br>
@@ -24,9 +25,9 @@
         <option value="ROLE_ADMIN">Admin</option>
         <option value="ROLE_MEMBER">Member</option>
         <option value="ROLE_GUEST">Guest</option>
-    </select>
-    <input type="submit" value="Go">
+    </select><br>
+    <input style="background-color: #EED056;color: white; font-size: 16px;font-family: Poppins; border-radius: 10px; border-style: none; padding: 10px; margin-top: 7%; width: 30%" type="submit" value="Go">
 </form>
-
+</div>
 </body>
 </html>

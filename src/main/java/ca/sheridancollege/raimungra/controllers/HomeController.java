@@ -48,11 +48,7 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/secure/addContact")
-    public String addContact(Model model){
-        model.addAttribute("contact", new Contact());
-        return "/secure/addContact";
-    }
+
 
     @GetMapping("/register")
     public String getRegister() {
@@ -66,7 +62,8 @@ public class HomeController {
     }
 
     @GetMapping("secure/addContact")
-    public String getAddContact() {
+    public String getAddContact(Model model) {
+        model.addAttribute("contact", new Contact());
         return "secure/addContact";
     }
 
