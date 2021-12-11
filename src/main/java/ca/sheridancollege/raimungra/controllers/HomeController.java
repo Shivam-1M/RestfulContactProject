@@ -3,6 +3,7 @@ package ca.sheridancollege.raimungra.controllers;
 import ca.sheridancollege.raimungra.beans.Contact;
 import ca.sheridancollege.raimungra.database.DatabaseAccess;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +17,8 @@ import java.util.Map;
 public class HomeController {
 
     @Autowired
-    DatabaseAccess da;
+    @Lazy
+    private DatabaseAccess da;
 
     @GetMapping("secure/listContacts")
     public String viewContacts(Model model, RestTemplate restTemplate) {
@@ -26,7 +28,8 @@ public class HomeController {
         return "secure/listContacts";
     }
 
-    @GetMapping(value="secure/addContact/{id}", produces="application/json")
+    @GetMapping(value="/getContact/{id}", produces="application/json")
+    @ResponseBody
     public Map<String, Object> getContact(@PathVariable int id, RestTemplate restTemplate) {
         Map<String, Object> data = new HashMap<String, Object>();
         ResponseEntity<Contact> responseEntity = restTemplate.getForEntity
@@ -34,6 +37,28 @@ public class HomeController {
         data.put("contact", responseEntity.getBody());
         return data;
     }
+
+    @PostMapping("/register")
+    public String postRegister(@RequestParam String username, @RequestParam String[] role,@RequestParam String password) {
+        da.addUser(username, password);
+
+        Long userId= da.findUserAccount(username).getUserId();
+        for(String r:role)
+            da.addRole(userId, Long.parseLong(r));
+        return "home";
+    }
+
+    @GetMapping("/secure/addContact")
+    public String addContact(Model model){
+        model.addAttribute("contact", new Contact());
+        return "/secure/addContact";
+    }
+
+    @GetMapping("/register")
+    public String getRegister() {
+        return "register";
+    }
+
 
     @GetMapping("/")
     public String getHome() {
@@ -46,7 +71,7 @@ public class HomeController {
     }
 
     @GetMapping("/login")
-    public String getRegister() {
+    public String getLogin() {
         return "login";
     }
 
@@ -54,13 +79,6 @@ public class HomeController {
     public String noPermission(){
 
         return "error/accessDenied";
-    }
-
-    @PostMapping("/insertContact")
-    public String insertContact(Model model, @RequestParam String name, @RequestParam String phoneNumber,
-                                @RequestParam String address, @RequestParam String email, @RequestParam String role) {
-        da.save(new Contact(name, phoneNumber, address, email, role));
-        return "redirect:/secure/listContacts";
     }
 
 }

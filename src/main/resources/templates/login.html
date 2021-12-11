@@ -3,14 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../static/css/styles.css" th:href="@{/css/styles.css}" />
 </head>
-<body>
-<h1>Register Page</h1>
-<a th:href="@{/}">Home</a>
-<a th:href="@{/login}">Register</a>
-<a th:href="@{/secure/listContacts}">List Contacts</a>
-<a th:href="@{/secure/addContact}">Add Contact</a>
+<body class="otherBackground">
+<div class="container">
+    <a th:href="@{/}">Home</a>
+    <a th:href="@{/register}">Register</a>
+    <a th:href="@{/secure/listContacts}">List Contacts</a>
+    <a th:href="@{/secure/addContact}">Add Contact</a>
+</div>
 
+<div class="register">
+    <h1 style="color: #383682">Login Here</h1>
 <form method="post" th:action="@{/login}">
     <div th:if="${param.error}">
 	<div class="error">
@@ -23,13 +28,15 @@
         </div>
     </div>
     <div>
-        Username: <input type="text" name="username" /><br>
-        Password: <input type="password" name="password" /><br>
-        <input type="submit" name="login-submit" value="Log In" />
+        Username: <input type="text" style="margin-left: 8.5%;" name="username" /><br>
+        Password: <input style="margin-left: 10%;" type="password" name="password" /><br>
+        <input style="background-color: #EED056;color: white; font-size: 16px;font-family: Poppins; border-radius: 10px; border-style: none; padding: 10px; margin-top: 7%; width: 30%" type="submit" name="login-submit" value="Log In" />
     </div>
 
 
 </form>
+    <a style="text-decoration: none; color: #56C6BE; margin-top:10px; font-family: Poppins; font-size: 14px" th:href="@{/register}">Need an account?</a>
+</div>
 
 </body>
 </html>

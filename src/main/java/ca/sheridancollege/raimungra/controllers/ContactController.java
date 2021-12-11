@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/contacts")
+//@RequestMapping("/contacts")
 public class ContactController {
 
     @Autowired
@@ -25,6 +25,8 @@ public class ContactController {
 
         return da.findById(id).get(0);
     }
+
+
 
     @PostMapping(consumes="application/json")
     public Long postContact(@RequestBody Contact contact) {

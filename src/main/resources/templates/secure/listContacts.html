@@ -4,10 +4,19 @@
     <meta charset="UTF-8">
     <title>List Contacts</title>
     <!--<script src="../static/js/script.js" th:src="@{/js/script.js}"></script>-->
+    <link rel="stylesheet" type="text/css" media="all" href="/static/css/styles.css" th:href="@{/css/styles.css}" />
 </head>
-<body>
-<h1>List Contacts Page</h1>
-<table>
+
+<body class="mainBackground">
+<div class="container">
+    <a th:href="@{/}">Home</a>
+    <a th:href="@{/register}">Register</a>
+    <a th:href="@{/secure/listContacts}">List Contacts</a>
+    <a th:href="@{/secure/addContact}">Add Contact</a>
+</div>
+<div class="heading-cont" style="margin-top: 7%">
+<h1 style="color: #383682">List Contacts Page</h1>
+<table id="table">
     <tr>
         <th>ID</th>
         <th>Name</th>
@@ -25,9 +34,6 @@
         <td th:text="${c.role}"></td>
     </tr>
 </table>
-<a th:href="@{/}">Home</a>
-<a th:href="@{/login}">Register</a>
-<a th:href="@{/secure/listContacts}">List Contacts</a>
-<a th:href="@{/secure/addContact}">Add Contact</a>
+</div>
 </body>
 </html>

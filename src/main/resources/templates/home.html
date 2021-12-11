@@ -3,13 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/styles.css}"/>
 </head>
-<body>
-<h1>Home Page</h1>
+<body class="background">
+
+<div class="container">
 <a th:href="@{/}">Home</a>
-<a th:href="@{/login}">Register</a>
+<a th:href="@{/register}">Register</a>
 <a th:href="@{/secure/listContacts}">List Contacts</a>
 <a th:href="@{/secure/addContact}">Add Contact</a>
+</div>
+<div  class="heading-cont"><p style="color: #56C6BE">ONLINE PHONEBOOK</p>
+    <h1 style="color:#383682">Manage your contacts efficiently.</h1>
+    <p style="font-size: 16px">An online phonebook for all your contact
+        needs.</p>
+    <button type="button" style="background-color: #EED056; font-size: 16px;font-family: Poppins; border-radius: 10px; border-style: none; padding: 10px; margin-top: 7%; width: 30%"><a style="text-decoration: none; color: white;" th:href="@{/register}">REGISTER</a></button>
+</div>
+
+
+
+
 
 <div sec:authorize="isAuthenticated()">
     User's Name: <span sec:authentication ="name"></span></br>
