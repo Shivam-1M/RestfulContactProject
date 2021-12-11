@@ -26,7 +26,8 @@ body{
 
 .container{
     margin-top: 3.5%;
-    margin-left: 55%;
+    margin-left: 3%;
+    width: 60%;
 }
 
 .container a{
