@@ -1,12 +1,12 @@
 package ca.sheridancollege.raimungra.controllers;
 
 import ca.sheridancollege.raimungra.beans.Contact;
+import ca.sheridancollege.raimungra.database.DatabaseAccess;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
@@ -14,6 +14,9 @@ import java.util.Map;
 
 @Controller
 public class HomeController {
+
+    @Autowired
+    DatabaseAccess da;
 
     @GetMapping("secure/listContacts")
     public String viewContacts(Model model, RestTemplate restTemplate) {
@@ -23,8 +26,7 @@ public class HomeController {
         return "secure/listContacts";
     }
 
-    @GetMapping(value="/getContact/{id}", produces="application/json")
-    @ResponseBody
+    @GetMapping(value="secure/addContact/{id}", produces="application/json")
     public Map<String, Object> getContact(@PathVariable int id, RestTemplate restTemplate) {
         Map<String, Object> data = new HashMap<String, Object>();
         ResponseEntity<Contact> responseEntity = restTemplate.getForEntity
@@ -52,6 +54,13 @@ public class HomeController {
     public String noPermission(){
 
         return "error/accessDenied";
+    }
+
+    @PostMapping("/insertContact")
+    public String insertContact(Model model, @RequestParam String name, @RequestParam String phoneNumber,
+                                @RequestParam String address, @RequestParam String email, @RequestParam String role) {
+        da.save(new Contact(name, phoneNumber, address, email, role));
+        return "redirect:/secure/listContacts";
     }
 
 }

@@ -1,17 +1,14 @@
 package ca.sheridancollege.raimungra.beans;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 @Data
 @RequiredArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 
 public class Contact {
 
-    @NonNull
     private Long id;
 
     @NonNull
@@ -20,11 +17,14 @@ public class Contact {
     @NonNull
     private String phoneNumber;
 
+    @NonNull
     private String address;
+
+    @NonNull
     private String email;
-    private String[] roles = {"Admin", "Member", "Guest"};
+
+
+    @NonNull
     private String role;
-
-
 
 }

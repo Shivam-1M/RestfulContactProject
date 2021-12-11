@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Add Contact</title>
@@ -10,5 +10,20 @@
 <a th:href="@{/login}">Register</a>
 <a th:href="@{/secure/listContacts}">List Contacts</a>
 <a th:href="@{/secure/addContact}">Add Contact</a>
+
+<form method="post" action="#" th:action="@{/insertContact}">
+    <input type="hidden" name="id">
+    Name :<input type="text" name="name"><br>
+    Phone Number :<input type="text" name="phoneNumber"><br>
+    Address :<input type="text" name="address"><br>
+    Email:<input type="text" name="email"><br>
+    Role :
+    <select name="role">
+        <option>Admin</option>
+        <option>Member</option>
+        <option>Guest</option>
+    </select><br>
+    <input type="submit" value="Add Contact">
+</form>
 </body>
 </html>
