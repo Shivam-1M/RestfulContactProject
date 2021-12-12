@@ -6,23 +6,7 @@
     <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/styles.css}"/>
 </head>
 <body class="background">
-<div style="display: flex;">
-<div style="width: 15%;
-margin-top: 1.7%;
-margin-left: 40%;" sec:authorize="isAuthenticated()">
-    <div>
-        <form method="get" action="#" th:action="@{/logout}">
-            <input style="background-color: #EED056;
-font-size: 16px;
-font-family: Poppins;
-border-radius: 10px;
-border-style: none;
-padding: 10px;
-margin-top: 7%;
-width: 50%;" type="submit" value="Logout"/>
-        </form>
-    </div>
-</div>
+
 <div class="container">
 <a th:href="@{/}">Home</a>
 <a th:href="@{/register}">Register</a>
@@ -36,6 +20,17 @@ width: 50%;" type="submit" value="Logout"/>
         needs.</p>
     <button type="button" style="background-color: #EED056; font-size: 16px;font-family: Poppins; border-radius: 10px; border-style: none; padding: 10px; margin-top: 7%; width: 30%"><a style="text-decoration: none; color: white;" th:href="@{/register}">REGISTER</a></button>
 </div>
-
+<footer class="footer">
+    <div class="footer-container">
+    <p>© Paven Rai and Shivam Mungra 2021</p>
+    <div sec:authorize="isAuthenticated()">
+        <div>
+            <form method="get" action="#" th:action="@{/logout}">
+                <input class="logout" type="submit" value="Logout"/>
+            </form>
+        </div>
+    </div>
+    </div>
+</footer>
 </body>
 </html>

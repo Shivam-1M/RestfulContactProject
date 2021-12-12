@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>Add Contact</title>
     <link rel="stylesheet" type="text/css" media="all" href="/static/css/styles.css" th:href="@{/css/styles.css}" />
 </head>
-<body class="Background">
+<body class="mainBackground">
 <div class="container">
     <a th:href="@{/}">Home</a>
     <a th:href="@{/register}">Register</a>
@@ -29,5 +29,17 @@
     <input style="background-color: #EED056;color: white; font-size: 16px;font-family: Poppins; border-radius: 10px; border-style: none; padding: 10px; margin-top: 7%; width: 30%" type="submit" value="Go">
 </form>
 </div>
+    <footer class="footer">
+  <div class="footer-container">
+    <p>© Paven Rai and Shivam Mungra 2021</p>
+    <div sec:authorize="isAuthenticated()">
+      <div>
+        <form method="get" action="#" th:action="@{/logout}">
+          <input class="logout" type="submit" value="Logout"/>
+        </form>
+      </div>
+    </div>
+  </div>
+</footer>
 </body>
 </html>
