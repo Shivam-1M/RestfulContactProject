@@ -92,6 +92,7 @@ public class HomeController {
         return "redirect:/secure/listContacts";
     }
 
+/*
     @GetMapping("/secure")
     public String secureIndex(Authentication authentication, Model model){
         String email = authentication.getName();
@@ -104,5 +105,6 @@ public class HomeController {
 
         return "secure/**";
     }
+*/
 
 }
