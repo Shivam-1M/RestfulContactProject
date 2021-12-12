@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
@@ -37,6 +37,17 @@
 </form>
     <a style="text-decoration: none; color: #56C6BE; margin-top:10px; font-family: Poppins; font-size: 14px" th:href="@{/register}">Need an account?</a>
 </div>
-
+<footer class="footer">
+    <div class="footer-container">
+        <p>© Paven Rai and Shivam Mungra 2021</p>
+        <div sec:authorize="isAuthenticated()">
+            <div>
+                <form method="get" action="#" th:action="@{/logout}">
+                    <input class="logout" type="submit" value="Logout"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</footer>
 </body>
 </html>
