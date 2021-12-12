@@ -4,4 +4,6 @@ INSERT INTO contact(name, phoneNumber, address, email, role) VALUES
                                  ('Paven Rai','1234567892','abc','abce@mail.com','Member'),
                                  ('Paven Rai','1234567893','abc','abcf@mail.com','Guest');
 
-INSERT INTO sec_role(roleName) VALUES ('Admin'),('Member'),('Guest');
+INSERT INTO sec_role(roleName) VALUES ('ROLE_Admin');
+INSERT INTO sec_role(roleName) VALUES ('ROLE_Member');
+INSERT INTO sec_role(roleName) VALUES ('ROLE_Guest');
