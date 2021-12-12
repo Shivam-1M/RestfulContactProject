@@ -26,8 +26,7 @@ body{
 
 .container{
     margin-top: 3.5%;
-    margin-left: 3%;
-    width: 60%;
+    margin-left: 52%;
 }
 
 .container a{
@@ -59,15 +58,16 @@ body{
 #table {
     font-family: Poppins, sans-serif;
     border-collapse: collapse;
-    width: 100%;
+    width: 250%;
 }
 
 #table td, #table th {
-    border: 1px solid #ddd;
+    border: 1px solid wheat;
     padding: 8px;
 }
 
 #table tr:nth-child(even){background-color: #F8EBB6;}
+#table tr:nth-child(odd){background-color: #FFFFFF;}
 
 #table tr:hover {background-color: #ddd;}
 
@@ -77,5 +77,29 @@ body{
     text-align: left;
     background-color: #EED056;
     color: white;
+}
+
+.footer{
+    text-align: center;
+    font-family: poppins;
+    color: white;
+    background-color: #383682;
+    padding: 10px;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+}
+
+.logout{
+    background-color: white;
+    font-size: 16px;
+    font-family: Poppins;
+    border-radius: 10px;
+    color: #383682;
+    border-style: none;
+    padding: 10px;
+    width: 100%;
+    margin-top: 8%;
+    margin-left: 700%;
 }
 
