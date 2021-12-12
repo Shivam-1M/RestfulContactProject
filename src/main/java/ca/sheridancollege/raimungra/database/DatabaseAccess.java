@@ -26,6 +26,9 @@ public class DatabaseAccess {
     @Autowired
     UserDetailsServiceImpl userDetailsService;
 
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
 
 
     public List<Contact> findAll() {
@@ -71,7 +74,7 @@ public class DatabaseAccess {
                 + "(email, encryptedPassword, enabled)"
                 + " VALUES (:email, :encryptedPassword, 1)";
         parameters.addValue("email", email);
-        parameters.addValue("encryptedPassword", new BCryptPasswordEncoder().encode(password));
+        parameters.addValue("encryptedPassword", passwordEncoder.encode(password));
         jdbc.update(query, parameters);
 
     }
@@ -127,33 +130,6 @@ public class DatabaseAccess {
         for (Contact c : contactList) {
             save(c);
         }
-    }
-
-    public Contact findUserAccount(String email) {
-        MapSqlParameterSource parameters = new MapSqlParameterSource();
-        String query = "SELECT * FROM sec_user where email=:email";
-        parameters.addValue("email", email);
-        ArrayList<Contact> users = (ArrayList<Contact>)jdbc.query(query, parameters, new
-                BeanPropertyRowMapper<Contact>(Contact.class));
-        if (users.size()>0)
-            return users.get(0);
-        else
-            return null;
-    }
-
-    public List<String> getRolesById(Long userId) {
-        ArrayList<String> roles = new ArrayList<String>();
-        MapSqlParameterSource parameters = new MapSqlParameterSource();
-        String query = "select user_role.userId, sec_role.roleName "
-                + "FROM user_role, sec_role "
-                + "WHERE user_role.roleId=sec_role.roleId "
-                + "AND userId=:userId";
-        parameters.addValue("userId", userId);
-        List<Map<String, Object>> rows = jdbc.queryForList(query, parameters);
-        for (Map<String, Object> row : rows) {
-            roles.add((String)row.get("roleName"));
-        }
-        return roles;
     }
 
 

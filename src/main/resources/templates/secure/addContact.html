@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Add Contact</title>
@@ -14,17 +14,17 @@
 </div>
 <div class="register">
 <h1 style="color: #383682">Add contact</h1>
-<form method="post" th:action="@{/secure/addContact}" th:object="${contact}" >
-    <input type="hidden" name="id" th:field="*{id}"/><br>
-    Name: <input type="text" name="name" th:field="*{name}"/><br>
-    Phone: <input type="text" name="phone" th:field="*{phone}"/><br>
-    Address: <input type="text" name="address" th:field="*{address}"/><br>
-    Email: <input type="text" name="email" th:field="*{email}"/><br>
+<form method="post" th:action="@{/addContact}" >
+    <input type="hidden" name="id"/><br>
+    Name: <input type="text" name="name"/><br>
+    Phone: <input type="text" name="phoneNumber"/><br>
+    Address: <input type="text" name="address" /><br>
+    Email: <input type="text" name="email"/><br>
     <label for="roles" >Role:</label>
-    <select name="roles" id="roles" th:field="*{role}">
-        <option value="ROLE_ADMIN">Admin</option>
-        <option value="ROLE_MEMBER">Member</option>
-        <option value="ROLE_GUEST">Guest</option>
+    <select name="role" id="roles">
+        <option>Admin</option>
+        <option>Member</option>
+        <option>Guest</option>
     </select><br>
     <input style="background-color: #EED056;color: white; font-size: 16px;font-family: Poppins; border-radius: 10px; border-style: none; padding: 10px; margin-top: 7%; width: 30%" type="submit" value="Go">
 </form>

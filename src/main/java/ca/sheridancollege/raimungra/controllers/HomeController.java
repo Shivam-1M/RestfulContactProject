@@ -5,12 +5,16 @@ import ca.sheridancollege.raimungra.database.DatabaseAccess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -38,17 +42,15 @@ public class HomeController {
         return data;
     }
 
-    @PostMapping("/register")
+    @PostMapping("/registerUser")
     public String postRegister(@RequestParam String username, @RequestParam String[] role,@RequestParam String password) {
         da.addUser(username, password);
 
         Long userId= da.findUserAccount(username).getUserId();
         for(String r:role)
             da.addRole(userId, Long.parseLong(r));
-        return "home";
+        return "login";
     }
-
-
 
     @GetMapping("/register")
     public String getRegister() {
@@ -61,9 +63,14 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("secure/addContact")
-    public String getAddContact(Model model) {
-        model.addAttribute("contact", new Contact());
+    @PostMapping("/addContact")
+    public String addContact(Model model, @RequestParam String name, @RequestParam String phoneNumber, @RequestParam String address, @RequestParam String email, @RequestParam String role) {
+        da.save(new Contact(name, phoneNumber, address, email, role));
+        return "redirect:/secure/listContacts";
+    }
+
+    @GetMapping("/secure/addContact")
+    public String getAddContact() {
         return "secure/addContact";
     }
 
@@ -76,6 +83,27 @@ public class HomeController {
     public String noPermission(){
 
         return "error/accessDenied";
+    }
+
+    @PostMapping("/insertContact")
+    public String insertContact(Model model, @RequestParam String name, @RequestParam String phoneNumber, @RequestParam String address, @RequestParam String email, @RequestParam String role) {
+        da.save(new Contact(name, phoneNumber, address, email, role));
+        return "redirect:/secure/listContacts";
+    }
+
+    @GetMapping("/secure")
+    public String secureIndex(Authentication authentication, Model model){
+
+
+        String email = authentication.getName();
+        List<String> roleList= new ArrayList<String>();
+        for (GrantedAuthority ga: authentication.getAuthorities()) {
+            roleList.add(ga.getAuthority());
+        }
+        model.addAttribute("email", email);
+        model.addAttribute("roleList", roleList);
+
+        return "/secure/listContacts";
     }
 
 }

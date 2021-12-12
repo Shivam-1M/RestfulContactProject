@@ -21,9 +21,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     UserDetailsServiceImpl userDetailsService;
 
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
 
     @Autowired
-    public void configureGlobal(@Lazy AuthenticationManagerBuilder auth) throws Exception {
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService)
                 .passwordEncoder(new BCryptPasswordEncoder());
     }
@@ -35,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //http.headers().frameOptions().disable();
 
         http.authorizeRequests()
-                .antMatchers("/secure/**").hasAnyRole("ADMIN","MEMBER")
+                .antMatchers("/secure/**")./*permitAll()*/hasAnyRole("Admin","Member")
                 .antMatchers("/", "/js/**", "/css/**", "/images/**","/error/**", "/**").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/register").permitAll()

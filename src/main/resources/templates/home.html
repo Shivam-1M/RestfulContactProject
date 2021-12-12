@@ -35,11 +35,11 @@ width: 50%;" type="submit" value="Logout"/>
     <p style="font-size: 16px">An online phonebook for all your contact
         needs.</p>
     <button type="button" style="background-color: #EED056; font-size: 16px;font-family: Poppins; border-radius: 10px; border-style: none; padding: 10px; margin-top: 7%; width: 30%"><a style="text-decoration: none; color: white;" th:href="@{/register}">REGISTER</a></button>
+    <div sec:authorize="isAuthenticated()">
+        User's Name: <span sec:authentication="name"></span><br>
+        Roles: <span sec:authentication="principal.authorities"> </span><br><br>
+    </div>
 </div>
-
-
-
-
 
 
 </body>

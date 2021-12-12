@@ -17,12 +17,15 @@ public class User {
     private String email;
 
     @NonNull
-    private String EncryptedPassword;
+    private String encryptedPassword;
 
     @NonNull
     private Boolean enabled;
 
+    @NonNull
     private String[] roleNames = {"Admin", "Member"};
+
+    @NonNull
     private String roleName;
 
 
