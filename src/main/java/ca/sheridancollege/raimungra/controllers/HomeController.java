@@ -47,8 +47,9 @@ public class HomeController {
         da.addUser(username, password);
 
         Long userId= da.findUserAccount(username).getUserId();
-        for(String r:role)
+        for(String r:role) {
             da.addRole(userId, Long.parseLong(r));
+        }
         return "login";
     }
 
@@ -93,8 +94,6 @@ public class HomeController {
 
     @GetMapping("/secure")
     public String secureIndex(Authentication authentication, Model model){
-
-
         String email = authentication.getName();
         List<String> roleList= new ArrayList<String>();
         for (GrantedAuthority ga: authentication.getAuthorities()) {
@@ -103,7 +102,7 @@ public class HomeController {
         model.addAttribute("email", email);
         model.addAttribute("roleList", roleList);
 
-        return "/secure/listContacts";
+        return "secure/**";
     }
 
 }
