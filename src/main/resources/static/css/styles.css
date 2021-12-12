@@ -102,4 +102,7 @@ body{
     margin-top: 8%;
     margin-left: 700%;
 }
+.footer-container{
+    display: inline-flex;
+}
 
