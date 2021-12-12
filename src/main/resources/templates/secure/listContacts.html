@@ -32,6 +32,8 @@
         <td th:text="${c.address}"></td>
         <td th:text="${c.email}"></td>
         <td th:text="${c.role}"></td>
+        <td><a th:href="@{'/editContactByID/' + ${c.id}}">Edit</a></td>
+        <td><a th:href="@{'/deleteContactByID/' + ${c.id}}">Delete</a></td>
     </tr>
 </table>
 </div>

@@ -23,7 +23,6 @@ public class Contact {
     @NonNull
     private String email;
 
-
     @NonNull
     private String role;
 

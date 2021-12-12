@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Contact</title>
+    <link rel="stylesheet" type="text/css" media="all" href="/static/css/styles.css" th:href="@{/css/styles.css}" />
+</head>
+<body class="mainBackground">
+<div class="container">
+    <a th:href="@{/}">Home</a>
+    <a th:href="@{/register}">Register</a>
+    <a th:href="@{/secure/listContacts}">List Contacts</a>
+    <a th:href="@{/secure/addContact}">Add Contact</a>
+</div>
+<div class="register">
+<h1 style="color: #383682">Add contact</h1>
+<form method="post" th:action="@{/updateContact}" th:object="${contact}" >
+    <input type="hidden" name="id" th:field="*{id}"/><br>
+    Name: <input type="text" name="name" th:field="*{name}"/><br>
+    Phone: <input type="text" name="phoneNumber" th:field="*{phoneNumber}"/><br>
+    Address: <input type="text" name="address" th:field="*{address}"/><br>
+    Email: <input type="text" name="email" th:field="*{email}"/><br>
+    <label for="roles" >Role:</label>
+    <select name="role" id="roles" th:field="*{role}">
+        <option value="Admin">Admin</option>
+        <option value="Member">Member</option>
+        <option value="Guest">Guest</option>
+    </select><br>
+    <input style="background-color: #EED056;color: white; font-size: 16px;font-family: Poppins; border-radius: 10px; border-style: none; padding: 10px; margin-top: 7%; width: 30%" type="submit" value="Go">
+</form>
+</div>
+    <footer class="footer">
+  <div class="footer-container">
+    <p>© Paven Rai and Shivam Mungra 2021</p>
+    <div sec:authorize="isAuthenticated()">
+      <div>
+        <form method="get" action="#" th:action="@{/logout}">
+          <input class="logout" type="submit" value="Logout"/>
+        </form>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

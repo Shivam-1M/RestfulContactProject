@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -92,19 +93,32 @@ public class HomeController {
         return "redirect:/secure/listContacts";
     }
 
-/*
-    @GetMapping("/secure")
-    public String secureIndex(Authentication authentication, Model model){
-        String email = authentication.getName();
-        List<String> roleList= new ArrayList<String>();
-        for (GrantedAuthority ga: authentication.getAuthorities()) {
-            roleList.add(ga.getAuthority());
-        }
-        model.addAttribute("email", email);
-        model.addAttribute("roleList", roleList);
 
-        return "secure/**";
+    @GetMapping("/editContactByID/{id}")
+    public String modifyContactByID(Model model,
+                                       @PathVariable Long id) {
+        Contact contact;
+        contact = da.findById(id).get(0);
+        model.addAttribute("contact", contact);
+
+        return "secure/modify";
+
     }
-*/
+
+    @GetMapping("/deleteContactByID/{id}")
+    public String deleteContactByID(Model model, @PathVariable Long id) {
+        da.deleteByID(id);
+        model.addAttribute("contacts", da.findAll());
+        model.addAttribute("contact", new Contact());
+        return "redirect:/secure/listContacts";
+    }
+
+    @PostMapping("/updateContact")
+    public String updateStudentInfo(Model model, @ModelAttribute Contact contact){
+        da.updateContact(contact);
+        model.addAttribute("contact",new Contact());
+        return "redirect:/secure/listContacts";
+    }
+
 
 }

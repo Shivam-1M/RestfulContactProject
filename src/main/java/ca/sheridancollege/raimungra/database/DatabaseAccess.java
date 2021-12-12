@@ -132,6 +132,21 @@ public class DatabaseAccess {
         }
     }
 
+    public void updateContact(Contact contact){
+
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        String query = "UPDATE contact SET name= :name, phoneNumber= :phoneNumber, address= :address, email= :email, role= :role WHERE id =:id";
+        namedParameters.addValue("id", contact.getId());
+        namedParameters.addValue("name", contact.getName());
+        namedParameters.addValue("phoneNumber", contact.getPhoneNumber());
+        namedParameters.addValue("address", contact.getAddress());
+        namedParameters.addValue("email", contact.getEmail());
+        namedParameters.addValue("role", contact.getRole());
+        int rowsAffected = jdbc.update(query, namedParameters);
+        if (rowsAffected>0)
+            System.out.println("contact record was successfully updated!");
+    }
+
 
 
 
